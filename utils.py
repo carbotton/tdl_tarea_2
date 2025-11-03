@@ -9,6 +9,14 @@ import wandb, json
 import numpy as np
 import seaborn as sns
 
+TARGET_NAMES = [
+    "Normal",
+    "Arritmia supraventricular",
+    "Arritmia ventricular",
+    "Latido fusionado",
+    "Latido desconocido",
+]
+
 def evaluate(model, criterion, data_loader, device):
     """
     Evalúa el modelo en los datos proporcionados y calcula la pérdida promedio.
@@ -189,7 +197,7 @@ def model_classification_report(model, dataloader, device, nclasses, output_dict
     # Matriz de confusión
     if do_confusion_matrix:
         cm = confusion_matrix(all_labels, all_preds)
-        print("Matriz de confusión:\n", cm, "\n")
+        plot_confusion_matrix(cm, title="Confusion matrix")
 
     return report
 
@@ -420,5 +428,26 @@ def plot_class_distribution(x_labels, y_values, title="Distribución de clases",
             fontsize=10
         )
 
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_confusion_matrix(cm, title='Matriz de confusión'):
+    """
+    Grafica una matriz de confusión.
+    """
+    
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(
+        cm,
+        annot=True,               # mostrar valores
+        fmt="d",                  # formato entero
+        cmap="RdPu",              # paleta de color
+        xticklabels=TARGET_NAMES, # etiquetas en eje X
+        yticklabels=TARGET_NAMES  # etiquetas en eje Y
+    )
+    plt.title(title)
+    plt.xlabel("Predicted label")
+    plt.ylabel("True label")
     plt.tight_layout()
     plt.show()
