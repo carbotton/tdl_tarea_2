@@ -227,3 +227,9 @@ Comprobamos que la GRU y LSTM bidireccionales performan bien incluso SIN balance
 
 La RNN comun dio mal para todos los casos, no encontramos forma de mejorarla lo suficiente como para compararla con GRU o LSTM.
 
+
+
+
+# Comentarios para discutir:
+* [Training / Training RNN/ Observaciones RNN SIMPLE] "De todo lo que hicimos NADA la hizo funcionar bien, y menos en comparación con GRU y LSTM." Aca borre el menos en comparacion porque lo dejaria para la conclusion final
+
